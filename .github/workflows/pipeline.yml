@@ -22,10 +22,7 @@ jobs:
         run: echo "::set-output name=hash::$(git rev-parse --short ${{ github.sha }})"
 
       - name: Build and Push image
-        env:
-          REPO_NAME: ${{ github.event.repository.name }}
         run: |
-          docker build -t rohitvuclip/${{ REPO_NAME }}:${{ steps.commit_hash.outputs.hash }} .
-          #docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
-          docker push rohitvuclip/${{ REPO_NAME }}:${{ steps.commit_hash.outputs.hash }}
+          docker build -f Dockerfile -t rohitvuclip/${{ github.event.repository.name }}:${{ steps.commit_hash.outputs.hash }} .
+          docker push rohitvuclip/${{ github.event.repository.name }}:${{ steps.commit_hash.outputs.hash }}
       
