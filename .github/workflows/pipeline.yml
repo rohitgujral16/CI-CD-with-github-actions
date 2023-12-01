@@ -24,5 +24,6 @@ jobs:
       - name: Build and Push image
         run: |
           docker build -t rohitvuclip/${{ github.repository }}:${{ steps.commit_hash.outputs.hash }} .
+          docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }} docker.io
           docker push rohitvuclip/${{ github.repository }}:${{ steps.commit_hash.outputs.hash }}
       
