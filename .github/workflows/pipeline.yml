@@ -19,6 +19,6 @@ jobs:
 
       - name: Build and Push image
         run: |
-          docker build -t rohitvuclip/nodejs-app:v2
+          docker build -t rohitvuclip/nodejs-app:v2 .
           docker push rohitvuclip/nodejs-app:v2
       
