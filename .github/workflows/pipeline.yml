@@ -40,10 +40,19 @@ jobs:
       - name: Run Tests in Docker Container
         run: docker run -i --rm rohitvuclip/${{ github.event.repository.name }}:${{ steps.commit_hash.outputs.hash }} echo "hello"
 
+  manual-approval:
+    needs: build_and_push_to_registry
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Wait for Manual Approval
+        id: manual-approval
+        run: echo "Manual approval required"
+        
   deploy:
     name: deploy the app
     runs-on: ubuntu-latest
-    needs: [build_and_push_to_registry]
+    needs: manual-approval
     steps:
       - name: deploy via helm
         run: |
