@@ -11,14 +11,6 @@ jobs:
       - name: Check our repository
         uses: actions/checkout@v3
 
-      # - name: Setup Node.js
-      #   uses: actions/setup-node@v4
-      #   with:
-      #     node-version: 14
-
-      # - name: Install Dependencies
-      #   run: npm install
-
       - name: testing
         run: echo "This is test" #npm test
 
@@ -46,8 +38,7 @@ jobs:
 
     steps:
       - name: Wait for Manual Approval
-        id: manual-approval
-        run: echo "Manual approval required"
+        uses: trstringer/manual-approval@v1
         
   deploy:
     name: deploy the app
