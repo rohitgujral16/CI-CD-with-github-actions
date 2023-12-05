@@ -38,7 +38,7 @@ jobs:
           docker push rohitvuclip/${{ github.event.repository.name }}:${{ steps.commit_hash.outputs.hash }}
           
       - name: Run Tests in Docker Container
-        run: docker run -it --rm rohitvuclip/${{ github.event.repository.name }}:${{ steps.commit_hash.outputs.hash }} npm test
+        run: docker run -i --rm rohitvuclip/${{ github.event.repository.name }}:${{ steps.commit_hash.outputs.hash }} npm test
 
   deploy:
     name: deploy the app
