@@ -36,4 +36,14 @@ jobs:
         run: |
           docker build -f Dockerfile -t rohitvuclip/${{ github.event.repository.name }}:${{ steps.commit_hash.outputs.hash }} .
           docker push rohitvuclip/${{ github.event.repository.name }}:${{ steps.commit_hash.outputs.hash }}
+
+  deploy:
+    name: deploy the app
+    runs-on: ubuntu-latest
+    steps:
+      - name: deploy via helm
+        run: |
+          echo "connect to cluster and run helm commands"
+          echo "run helm commands"
+    
       
