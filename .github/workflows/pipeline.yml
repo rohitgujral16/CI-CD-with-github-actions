@@ -11,13 +11,13 @@ jobs:
       - name: Check our repository
         uses: actions/checkout@v3
 
-      - name: Setup Node.js
-        uses: actions/setup-node@v4
-        with:
-          node-version: 14
+      # - name: Setup Node.js
+      #   uses: actions/setup-node@v4
+      #   with:
+      #     node-version: 14
 
-      - name: Install Dependencies
-        run: npm install
+      # - name: Install Dependencies
+      #   run: npm install
 
       - name: testing
         run: echo "This is test" #npm test
@@ -36,6 +36,9 @@ jobs:
         run: |
           docker build -f Dockerfile -t rohitvuclip/${{ github.event.repository.name }}:${{ steps.commit_hash.outputs.hash }} .
           docker push rohitvuclip/${{ github.event.repository.name }}:${{ steps.commit_hash.outputs.hash }}
+          
+      - name: Run Tests in Docker Container
+        run: docker run -it --rm rohitvuclip/${{ github.event.repository.name }}:${{ steps.commit_hash.outputs.hash }} npm test
 
   deploy:
     name: deploy the app
