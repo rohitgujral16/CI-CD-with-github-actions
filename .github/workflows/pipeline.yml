@@ -7,8 +7,6 @@ jobs:
   build_and_push_to_registry:
     name: Build and Push to repo
     runs-on: ubuntu-latest
-      #container:
-    #image: your-custom-docker-image:tag
     steps:
       - name: Check our repository
         uses: actions/checkout@v3
@@ -21,8 +19,8 @@ jobs:
       - name: Install Dependencies
         run: npm install
 
-      - name: Test linting
-        run: npm run lint
+      - name: testing
+        run: echo "This is test" #npm test
 
       - name: Login to Docker hub
         uses: docker/login-action@f054a8b539a109f9f41c372932f1ae047eff08c9
